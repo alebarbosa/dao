@@ -1,7 +1,10 @@
 <?php
     require_once("config.php");
-    $ale = new Usuario();
-    $ale->loadById(4); 
-
-    echo $ale;
+    //$list = Usuario::getList();
+    //echo json_encode($list);
+    //$search = Usuario::search("ale");
+    //echo json_encode($search);
+    $usuario = new Usuario();
+    $usuario->login("Alexandre", "123456");
+    echo $usuario;
     ?>

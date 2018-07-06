@@ -1,7 +1,6 @@
 <?php
     class Usuario{
-        private $idusuario, $deslogin, $dessenha, $dtcadastro;
-        
+        private $idusuario, $deslogin, $dessenha, $dtcadastro; 
         public function getIdusuario(){
             return $this->idusuario;
         }
@@ -27,6 +26,38 @@
             $this->dtcadastro = $value;
         }
 
+        public function login($login, $senha){
+            $sql=new Sql();
+
+            $results = $sql->select("SELECT * FROM tb_usuarios where deslogin = :LOGIN and dessenha = :SENHA", array(
+                ":LOGIN"=>$login,
+                ":SENHA"=>$senha
+            ));
+            
+            if(count($results) > 0){
+
+                $row = $results[0];
+                $this->setIdusuario($row['idusuario']);
+                $this->setDeslogin($row['deslogin']);
+                $this->setDessenha($row['dessenha']);
+                $this->setDtcadastro(new DateTime($row['dtcadastro']));
+            }else{
+                throw new Exception("Login e/ou senha invalidos!");
+            }
+        }
+        public static function search($login){
+            $sql = new Sql();
+            return $sql->select("SELECT * FROM tb_usuarios where deslogin LIKE :SEARCH order by deslogin", array(
+                ':SEARCH'=>"%$login%"
+            ));
+        }
+        public static function getList(){
+            $sql = new Sql();
+            $results = $sql->select("SELECT * FROM tb_usuarios ORDER BY deslogin");
+
+            return $results;
+
+        }
         public function loadById($id){
 
             $sql=new Sql();
