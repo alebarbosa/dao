@@ -10,9 +10,9 @@
 
     $usuario= new Usuario();
     $usuario->loadById(25);
-    $usuario->update("Professor", "abcder2");
-
+    $usuario->delete();
     echo $usuario;
+    
     
     
     ?>

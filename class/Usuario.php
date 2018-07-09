@@ -45,6 +45,19 @@
                 $this->setData($results[0]);
             }
         }
+
+        public function delete(){
+            $sql = new Sql();
+            $sql->query("DELETE FROM tb_usuarios where idusuario = :ID", array(
+                ':ID'=>$this->getIdusuario()
+            ));
+
+            $this->setIdusuario(0);
+            $this->setDessenha("");
+            $this->setDeslogin("");
+            $this->setDtcadastro(new DateTime());
+        }
+        
         public function update($login, $senha){
             $sql = new Sql();
 
