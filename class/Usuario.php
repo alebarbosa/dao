@@ -26,6 +26,15 @@
             $this->dtcadastro = $value;
         }
 
+
+        public function insert($login, $senha){
+            $sql = new Sql();
+            $sql->select("INSERT INTO tb_usuarios(deslogin , dessenha)  VALUES  (:LOGIN, :SENHA)", array(
+                ":LOGIN"=> $login,
+                ":SENHA"=>$senha
+            ));
+        }
+
         public function login($login, $senha){
             $sql=new Sql();
 
