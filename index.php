@@ -8,7 +8,11 @@
     //$usuario->login("Alexandre", "123456");
     //echo $usuario;
 
-    $ale = new Usuario();
-    $ale->insert("Ale", "abcd");
+    $usuario= new Usuario();
+    $usuario->loadById(25);
+    $usuario->update("Professor", "abcder2");
+
+    echo $usuario;
+    
     
     ?>
